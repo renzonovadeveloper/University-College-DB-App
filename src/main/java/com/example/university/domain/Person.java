@@ -5,36 +5,35 @@ import javax.persistence.Embeddable;
 
 /**
  * Person encapsulates an individual's first and last name.
- * <p>
- * Created by Renzo
+ *
+ * Created by rt
  */
+
 @Embeddable
 public class Person {
-    @Column
-    private String firstName;
+  @Column
+  private String firstName;
 
-    @Column
-    private String lastName;
+  @Column
+  private String lastName;
 
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+  public Person(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-    protected Person() {
-    }
+  protected Person() {}
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    @Override
-    public String toString() {
-        return " firstName='" + firstName + '\'' +
-                ", lastname='" + lastName + "\' ";
-    }
+  @Override
+  public String toString() {
+    return " firstName='" + firstName + '\'' + ", lastName='" + lastName + "\' ";
+  }
 }

@@ -1,95 +1,35 @@
 package com.example.university.domain;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Id;
 
 /**
- * JPA Entity representing the University staff
- * <p>
- * Created by Renzo
+ * JPA Entity representing a staff member of a department.
+ *
+ * Created by rt
  */
 @Entity
-@Table(name = "STAFF")
+@Table(name = "Staff_member")
 public class Staff {
-    @Id
-    @GeneratedValue
-    private Integer staffId;
+  @Id
+  @GeneratedValue
+  private Integer id;
 
-    @Column
-    private boolean fullTime;
-    
-    @Column
-    private String title;
-    
+  @Embedded
+  private Person member;
 
-    public String getTitle() {
-      return title;
-    }
+  public Staff(Person member) {
+    this.member = member;
+  }
 
-    public void setTitle(String title) {
-      this.title = title;
-    }
+  protected Staff() {}
 
-    @Column
-    private double salary;
-    
+  public Person getMember() {
+    return member;
+  }
 
-    @Column
-    private Integer age;
-
-    @Embedded
-    private Person attendee;
-
-    @OneToMany
-    private List<Course> courses = new ArrayList<>();
-
-    public Staff(Person attendee, boolean fullTime, Integer age, String tittle) {
-        this.attendee = attendee;
-        this.fullTime = fullTime;
-        this.age = age;
-        this.title=tittle;
-        courses = new ArrayList<>();
-    }
-
-    protected Staff() {
-    }
-
-    public Integer getStudentId() {
-        return staffId;
-    }
-
-    public Person getAttendee() {
-        return attendee;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public double getSalary() {
-      return salary;
-    }
-
-    public void setSalary(double salary) {
-      this.salary = salary;
-    }
-
-    public boolean isFullTime() {
-        return fullTime;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    @Override
-    public String toString() {
-        return "Staff{" + "Staff ID=" + staffId + ", " + attendee + ", fullTime=" + fullTime +
-                ", age=" + age + " tittle=" + title +"}\n";
-    }
+  @Override
+  public String toString() {
+    return "Staff{" + "id=" + id + ", member=" + member + '}';
+  }
 }
